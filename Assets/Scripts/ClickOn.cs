@@ -14,8 +14,10 @@ public class ClickOn : MonoBehaviour
 
     public bool alreadySelected = false;
     public NavMeshAgent agent;
+    private List<GameObject> selectedList;
     void Start()
     {
+        selectedList = new List<GameObject>();
         agent = GetComponent<NavMeshAgent>();
         mesh = GetComponent<MeshRenderer>();
         Camera.main.gameObject.GetComponent<Click>().selectableObjects.Add(this.gameObject);
@@ -31,6 +33,7 @@ public class ClickOn : MonoBehaviour
     private void Update()
     {
         MoveSelectedAgents();
+        Formation();
     }
     private void MoveSelectedAgents()
     {
@@ -45,6 +48,17 @@ public class ClickOn : MonoBehaviour
                 {
                     agent.SetDestination(hit.point);
                 }
+            }
+        }
+    }
+    private void Formation()
+    {
+        if(alreadySelected)
+        {
+            selectedList.Add(gameObject);
+            foreach(var i in selectedList)
+            {
+                
             }
         }
     }

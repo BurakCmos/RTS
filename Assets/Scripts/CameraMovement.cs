@@ -5,6 +5,8 @@ public class CameraMovement : MonoBehaviour
 	public int cameraSpeed;
 	public float sensivity;
 	private float mouseX;
+	public int zoomOutDistance,zoomInDistance;
+	public int initialCameraXRotation = 65;
 
 	void Update()
 	{
@@ -39,11 +41,23 @@ public class CameraMovement : MonoBehaviour
 	}
 
 	private void HandleScroll()
-    {
+	{
+		//zoom out
 		if (Input.GetAxis("Mouse ScrollWheel") < 0 && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+		{
+			if (transform.position.y >= zoomOutDistance || transform.GetChild(0).rotation.x >= 75)
+				return;
 			transform.Translate((Vector3.up * 5) * (cameraSpeed * 5) * Time.deltaTime);
+			transform.GetChild(0).Rotate(sensivity * (cameraSpeed / 2) * Time.deltaTime, 0, 0);
+		}
+		//zoom in
 		if (Input.GetAxis("Mouse ScrollWheel") > 0 && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+			if (transform.position.y <= zoomInDistance)
+				return;
 			transform.Translate((Vector3.down * 5) * (cameraSpeed * 5) * Time.deltaTime);
+			transform.GetChild(0).Rotate(-sensivity * (cameraSpeed / 2) * Time.deltaTime,0,0);
+		}
 	}
 }
 

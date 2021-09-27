@@ -23,7 +23,7 @@ public class Click : MonoBehaviour
     {
         //if (Input.GetMouseButtonDown(1))
         //    ClearSelected();
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             mousePos1 = Camera.main.ScreenToViewportPoint(Input.mousePosition);
