@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 7555600487783686207}
   - component: {fileID: 7555600487783686206}
   - component: {fileID: 4944120466311133133}
+  - component: {fileID: 1738247961}
   m_Layer: 3
   m_Name: Clickable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 4
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7555600487783686193
@@ -111,3 +112,26 @@ MonoBehaviour:
   red: {fileID: 2100000, guid: b6dd124fb4363e6468c2aad678b1ff77, type: 2}
   green: {fileID: 2100000, guid: f0e0ffbb2cc5aae44b68834d15d2745c, type: 2}
   alreadySelected: 0
+  agent: {fileID: 0}
+--- !u!195 &1738247961
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555600487783686205}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
