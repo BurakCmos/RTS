@@ -50,6 +50,14 @@ public class ClickOn : MonoBehaviour
                 }
             }
         }
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            Debug.Log("hareket ettigi durum");
+        }
+        else
+        {
+            Debug.Log("durdugu durum");
+        }
     }
     private void Formation()
     {
