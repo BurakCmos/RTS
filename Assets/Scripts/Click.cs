@@ -21,8 +21,8 @@ public class Click : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetMouseButtonDown(1))
-        //    ClearSelected();
+        if (Input.GetMouseButtonDown(1))
+            ClearSelected();
 
         if (Input.GetMouseButtonDown(0))
         {

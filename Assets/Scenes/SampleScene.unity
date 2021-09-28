@@ -657,6 +657,7 @@ MonoBehaviour:
   sensivity: 70
   zoomOutDistance: 40
   zoomInDistance: 0
+  initialCameraXRotation: 65
 --- !u!4 &703475124
 Transform:
   m_ObjectHideFlags: 0
