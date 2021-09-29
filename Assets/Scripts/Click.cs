@@ -7,16 +7,16 @@ public class Click : MonoBehaviour
     [SerializeField]
     private LayerMask clickableLayer;
     
-    public List<GameObject> selectedObjects;
+    public List<ClickOn> selectedObjects;
 
     [HideInInspector]
-    public List<GameObject> selectableObjects;
+    public List<ClickOn> selectableObjects;
 
     private Vector3 mousePos1, mousePos2;
     private void Awake()
     {
-        selectedObjects = new List<GameObject>();
-        selectableObjects = new List<GameObject>();
+        selectedObjects = new List<ClickOn>();
+        selectableObjects = new List<ClickOn>();
     }
 
     private void Update()
@@ -57,13 +57,13 @@ public class Click : MonoBehaviour
     }
     private void SelectObjects()
     {
-        List<GameObject> remObjects = new List<GameObject>();
+        List<ClickOn> remObjects = new List<ClickOn>();
         if (Input.GetKey("left ctrl") == false)
             ClearSelected();
 
         Rect selectedRect = new Rect(mousePos1.x, mousePos1.y, mousePos2.x - mousePos1.x, mousePos2.y - mousePos1.y);
 
-        foreach(GameObject selectObject in selectableObjects)
+        foreach(ClickOn selectObject in selectableObjects)
         {
             if(selectObject != null)
             {
@@ -79,7 +79,7 @@ public class Click : MonoBehaviour
         }
         if(remObjects.Count > 0 )
         {
-            foreach (GameObject rem in remObjects)
+            foreach (ClickOn rem in remObjects)
             {
                 selectableObjects.Remove(rem);
             }
@@ -87,11 +87,21 @@ public class Click : MonoBehaviour
         }
     }
 
+    public Vector3 SelectedUnitsCenter()
+    {
+        Vector3 center = Vector3.zero;
+        foreach(var i in selectedObjects)
+        {
+            center += i.transform.position;
+        }
+        center /= selectedObjects.Count;
+        return center;
+    }
     private void ClearSelected() 
     {
         if (selectedObjects.Count > 0)
         {
-            foreach (GameObject obj in selectedObjects)
+            foreach (ClickOn obj in selectedObjects)
             {
                 obj.GetComponent<ClickOn>().alreadySelected = false;
                 obj.GetComponent<ClickOn>().OnClick();
@@ -101,13 +111,13 @@ public class Click : MonoBehaviour
     }
     private void AddSelected(ClickOn clickOnScript, RaycastHit rayHit,bool alreadySelected)
     {
-        selectedObjects.Add(rayHit.collider.gameObject);
+        selectedObjects.Add(rayHit.collider.gameObject.GetComponent<ClickOn>());
         clickOnScript.alreadySelected = alreadySelected;
         clickOnScript.OnClick();
     }
     private void RemoveSelected(ClickOn clickOnScript, RaycastHit rayHit, bool alreadySelected)
     {
-        selectedObjects.Add(rayHit.collider.gameObject);
+        selectedObjects.Add(rayHit.collider.gameObject.GetComponent<ClickOn>());
         clickOnScript.alreadySelected = alreadySelected;
         clickOnScript.OnClick();
     }
