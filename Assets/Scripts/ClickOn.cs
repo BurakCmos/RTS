@@ -176,13 +176,8 @@ public class ClickOn : MonoBehaviour
         float leftmostXOffset = -1 * (numUnits / 2.0f);
         for (int i = 0; i < numUnits; i++)
         {
-            float xOffset = 2;
+            float xOffset = 0;
             float zOffset = 2;
-            //if (IsOdd(i))
-            //{
-            //    zOffset = 2f;
-            //}
-
             Vector3 targetPos = unitCenter;
             targetPos.x += xOffset;
             targetPos.z += zOffset;
